@@ -1,4 +1,3 @@
-  
   Following commands can be use for test the octave bindings:
   (Assumption: Octave and All required dependices(libarmadillo, liboctave-dev) are installed.)
 
@@ -11,3 +10,8 @@
      $ octave-cli
      octave:1> source test_octave.m
      octave:2> test octave_binding_tests.m
+
+
+  In order to get documentation we can use:
+
+     octave:1> help test_octave.m
