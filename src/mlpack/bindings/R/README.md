@@ -1,4 +1,4 @@
-  Following commands can be use for test the r bindings:
+  Following commands can be use for test the r bindings in this folder:
   (Assumption: R Programming and All required dependices(libarmadillo, Rcpp) are installed.)
 
     $ export LD_LIBRARY_PATH=:$HOME/mlpack-r/build/lib
@@ -12,7 +12,7 @@
     $ R CMD SHLIB -std=c++11 -fopenmp -larmadillo -lboost_program_options -L$HOME/mlpack-r/build/lib/ -lmlpack test_r_binding.cpp
 
     $ R
-
     > x <- matrix ( c( 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15), nrow = 5)
     > source('test_r_binding.R')
-    > testRBinding(4.0, 12 , 'hello', x, TRUE)
+    > lists <- testRBinding(4.0, 12 , 'hello', x, TRUE, TRUE)
+    > testRBinding(4.0, 12 , 'hello', x, TRUE, TRUE, modelIn = lists$modelOut)

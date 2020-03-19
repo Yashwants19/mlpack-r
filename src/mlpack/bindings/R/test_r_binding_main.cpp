@@ -12,9 +12,11 @@
 #include <mlpack/prereqs.hpp>
 #include <mlpack/core/util/cli.hpp>
 #include <mlpack/core/util/mlpack_main.hpp>
+#include <mlpack/core/kernels/gaussian_kernel.hpp>
 
 using namespace std;
 using namespace mlpack;
+using namespace mlpack::kernel;
 
 PROGRAM_INFO("R binding test",
     "A simple program to test R binding functionality.",
@@ -28,11 +30,16 @@ PARAM_DOUBLE_IN_REQ("double_in", "Input double, must be 4.0.", "d");
 PARAM_FLAG("flag1", "Input flag, must be specified.", "f");
 PARAM_FLAG("flag2", "Input flag, must not be specified.", "F");
 PARAM_MATRIX_IN("matrix_in", "Input matrix.", "m");
+PARAM_MODEL_IN(GaussianKernel, "model_in", "Input model.", "");
+PARAM_FLAG("build_model", "If true, a model will be returned.", "");
 
 PARAM_STRING_OUT("string_out", "Output string, will be 'hello2'.", "S");
 PARAM_INT_OUT("int_out", "Output int, will be 13.");
 PARAM_DOUBLE_OUT("double_out", "Output double, will be 5.0.");
 PARAM_MATRIX_OUT("matrix_out", "Output matrix.", "M");
+PARAM_MODEL_OUT(GaussianKernel, "model_out", "Output model, with twice the "
+    "bandwidth.", "");
+PARAM_DOUBLE_OUT("model_bw_out", "The bandwidth of the model.");
 
 static void mlpackMain()
 {
@@ -66,5 +73,18 @@ static void mlpackMain()
     out.shed_row(4);
     out.row(2) *= 2.0;
     CLI::GetParam<arma::mat>("matrix_out") = move(out);
+  }
+
+  // If we got a request to build a model, then build it.
+  if (CLI::HasParam("build_model"))
+  {
+    CLI::GetParam<GaussianKernel*>("model_out") = new GaussianKernel(10.0);
+  }
+
+  // If we got an input model, double the bandwidth and output that.
+  if (CLI::HasParam("model_in"))
+  {
+    CLI::GetParam<double>("model_bw_out") =
+        CLI::GetParam<GaussianKernel*>("model_in")->Bandwidth() * 2.0;
   }
 }

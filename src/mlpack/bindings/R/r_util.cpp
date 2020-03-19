@@ -95,8 +95,7 @@ SEXP CLI_GetParamMatCols(SEXP paramName)
 // [[Rcpp::export]]
 SEXP CLI_GetParamMat(SEXP paramName)
 {
-  arma::mat& mat = CLI::GetParam<arma::mat>(Rcpp::as<std::string>(paramName));
-  return Rcpp::wrap(mat);
+  return Rcpp::wrap(CLI::GetParam<arma::mat>(Rcpp::as<std::string>(paramName)));
 }
 
 // [[Rcpp::export]]
