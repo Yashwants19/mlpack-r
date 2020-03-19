@@ -14,5 +14,5 @@
     $ R
     > x <- matrix ( c( 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15), nrow = 5)
     > source('test_r_binding.R')
-    > lists <- testRBinding(4.0, 12 , 'hello', x, TRUE, TRUE)
+    > lists <- testRBinding(4.0, 12, 'hello', flag1 = TRUE, buildModel = TRUE)
     > testRBinding(4.0, 12 , 'hello', x, TRUE, TRUE, modelIn = lists$modelOut)

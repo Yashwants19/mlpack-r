@@ -20,6 +20,8 @@ testRBinding <- function(doubleIn, intIn, stringIn, matrixIn = matrix(NA), build
 
   CLISetParamInt("int_in", intIn)
 
+  CLISetParamString("string_in", stringIn)
+
   if (buildModel != FALSE)
   {
     CLISetParamBool("build_model", buildModel)
