@@ -47,7 +47,7 @@ CLIGetParamMat <- function(paramName, paramValue)
   mat = .Call("CLI_GetParamMat", as.character(paramName))
   nrows = .Call("CLI_GetParamMatRows", as.character(paramName))
   ncols = .Call("CLI_GetParamMatCols", as.character(paramName))
-  return (matrix(mat, ncols, nrows, byrow = TRUE))
+  return (matrix(mat, nrows, ncols))
 }
 
 CLIGetParamBool <- function(paramName, paramValue)

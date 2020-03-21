@@ -63,8 +63,9 @@ testRBinding <- function(doubleIn, intIn, stringIn, matrixIn = matrix(NA), build
   modelOut = CLIGetParamGaussianKernelPtr("model_out")
   modelBwout = CLIGetParamDouble("model_bw_out")
 
+  CLIClearSettings()
+
   my_list <- list("doubleOut" = doubleOut, "intOut" = intOut, "stringOut" = stringOut, "matrixOut" = matrixOut, "modelOut" = modelOut, "modelBwout" = modelBwout)
 
   return (my_list)
 }
-
