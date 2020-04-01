@@ -16,3 +16,6 @@
     > source('test_r_binding.R')
     > lists <- testRBinding(4.0, 12, 'hello', flag1 = TRUE, buildModel = TRUE)
     > testRBinding(4.0, 12 , 'hello', x, TRUE, TRUE, modelIn = lists$modelOut)
+
+    # For Testing:
+    $ Rscript test-R_binding.R
